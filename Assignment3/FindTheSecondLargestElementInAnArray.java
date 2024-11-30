@@ -13,7 +13,7 @@ public class FindTheSecondLargestElementInAnArray {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the size of the array : ");
         size = input.nextInt();
-        if (size <= 1) {
+        if (size < 3) {
             System.out.println("There is no second largest number");
             System.exit(0); // Exits the code
         }
@@ -47,18 +47,18 @@ public class FindTheSecondLargestElementInAnArray {
         }
 
         // Logic to get the second largest in the array
+        // Sort the array
         Arrays.sort(numbers);
-        for (int i = size - 2; i >= 0; i--) {
-            for (int j = size; j >= 1; j--) {
-                if (numbers[i] != numbers[j - 1]) {
-                    System.out.println("The second largest number is " + numbers[i]);
-                    return; // Exit the for loop
-                } else {
-                    System.out.println("There is no second largest number");
-                    System.exit(0);
-                }
 
+        // Find the second largest element
+        for (int i = size - 2; i >= 0; i--) {
+            if (numbers[i] != numbers[i + 1]) {
+                // If the current element is not equal to the next one, it's the second largest
+                System.out.println("The second largest number is " + numbers[i]);
+                return;
             }
         }
+        // If no second largest element is found, print a message
+        System.out.println("There is no second largest number");
     }
 }
