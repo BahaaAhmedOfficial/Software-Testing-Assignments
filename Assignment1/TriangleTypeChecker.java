@@ -16,7 +16,7 @@ public class TriangleTypeChecker {
 
         // First we check if the sides for a triangle or not
         if (side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1) {
-            // Chechking if all sides are equal
+            // Checking if all sides are equal
             if (side1 == side2 && side2 == side3) {
                 System.out.print("The triangle is Equilateral");
             }
@@ -29,8 +29,10 @@ public class TriangleTypeChecker {
                 System.out.print("The triangle is Scalene");
         }
 
-        // The sides do not meet the requiremnts
+        // The sides do not meet the requirements
         else
             System.out.print("The sides do not form a triangle");
+
+        input.close();
     }
 }
