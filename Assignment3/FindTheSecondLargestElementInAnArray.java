@@ -11,33 +11,48 @@ public class FindTheSecondLargestElementInAnArray {
     public static void main(String[] args) {
         int size = 0;
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter the size of the array: ");
+        System.out.println("Enter the size of the array : ");
         size = input.nextInt();
-        double[] numbers = new double[size];
+        if (size <= 1) {
+            System.out.println("There is no second largest number");
+            System.exit(0); // Exits the code
+        }
+        double numbers[] = new double[size];
+        int frequency[] = new int[size];
 
         // For loop to input the numbers
         for (int i = 0; i < size; i++) {
             System.out.println("Enter the value of number " + (i + 1));
             numbers[i] = input.nextDouble();
         }
-        if (size == 1) {
-            System.out.println("No second largest element");
-        }
 
-        // Check if the arrays consists only of duplicate elements
-        int flag = 0;
+        // The logic to determine if the arrays consists only of one unique element
+        int visited = -1; // A flag to determine whether the elements has been visited or not
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                
+            int count = 1; // Count of each element is (1) by default
+            for (int j = i + 1; j < size; j++) {
+                if (numbers[i] == numbers[j]) {
+                    count++;
+                    frequency[j] = visited;
+                }
+            }
+            // If the element had been visited already, we discard the count
+            if (frequency[i] != visited) {
+                frequency[i] = count;
+            }
+            if (count == size) {
+                System.out.println("There is no second largest number");
+                System.exit(0); // Exits the code
             }
         }
 
-        
-        if (flag > 0) {
-            System.out.println("No second largest element");
-        } else {
-            Arrays.sort(numbers);
-            System.out.println(numbers[1]);
+        // Logic to get the second largest in the array
+        Arrays.sort(numbers);
+        for (int i = size - 2; i >= 0; i--) {
+            if (numbers[i] != numbers[size - 1]) {
+                System.out.println("The second largest number is " + numbers[i]);
+                return; // Exit the for loop
+            }
         }
     }
 }
