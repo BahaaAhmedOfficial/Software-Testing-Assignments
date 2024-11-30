@@ -49,9 +49,15 @@ public class FindTheSecondLargestElementInAnArray {
         // Logic to get the second largest in the array
         Arrays.sort(numbers);
         for (int i = size - 2; i >= 0; i--) {
-            if (numbers[i] != numbers[size - 1]) {
-                System.out.println("The second largest number is " + numbers[i]);
-                return; // Exit the for loop
+            for (int j = size; j >= 1; j--) {
+                if (numbers[i] != numbers[j - 1]) {
+                    System.out.println("The second largest number is " + numbers[i]);
+                    return; // Exit the for loop
+                } else {
+                    System.out.println("There is no second largest number");
+                    System.exit(0);
+                }
+
             }
         }
     }
